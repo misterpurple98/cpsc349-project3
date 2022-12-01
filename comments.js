@@ -23,7 +23,11 @@ class GameState {
       let j = Math.floor(Math.random() * i);
       if (j != i) {
         let tmp = this.gameDeck[i].slice(0);
-        this.gameDeck.copyWithin(i, j, j+1)
+        this.gameDeck[i][0] = this.gameDeck[j][0];
+        this.gameDeck[i][1] = this.gameDeck[j][1];
+
+        this.gameDeck[j][0] = tmp[0];
+        this.gameDeck[j][1] = tmp[1];
       }
     }
   };
