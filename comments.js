@@ -16,11 +16,28 @@ class GameState {
   };
 
   //This will check for a win, and (possibly) update HTML
-  /* 
-  update() {
-    TBI
+
+  Stay() {
+    let message = "";
+    if(this.playerTotal > 21){
+      message = "You Lost!";
+    }
+    else if (this.dealerTotal > 21){
+      message = "You Win!";
+    }
+    else if (this.playerTotal == this.dealerTotal){
+      message = "Tie!";
+    }
+    else if (this.playerTotal > this.dealerTotal){
+      message = "You Win!";
+    }
+    else if (this.playerTotal < this.dealerTotal){
+      message = "You Lost!";
+    }
+    document.getElementById("dealer-total").innerText = this.dealerTotal;
+    document.getElementById("player-total").innerText = this.playerTotal;
+    document.getElementById("result").innerText = message;
   }
-  */
 
   //Reset cards and deck
   clearState() {
