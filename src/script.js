@@ -28,18 +28,19 @@ function handleHit() {
 
 function handleStay() {
   game.Stay();
+  document.getElementById(
+      "bet-result-text"
+    ).innerHTML = `<p>Bet: ${game.bet}</p>`;
   updatePlayerHand();
 }
 
 function handlePlayAgain() {
+  game.clearState();
   swapGameToMainMenu();
 }
 
 function startGame() {
   swapMainMenuToGame();
-
-  game.clearState();
-  game.shuffleDeck();
 }
 
 function swapGameToMainMenu() {
@@ -60,8 +61,8 @@ function swapMainMenuToGame() {
   const gameContainer = document.getElementById("game-container");
   gameContainer.classList.add("invisible");
 
-  document.getElementById("dealer-total").innerText = "";
-  document.getElementById("player-total").innerText = "";
+  document.getElementById("dealer-total").innerText = game.dealerTotal;
+  document.getElementById("player-total").innerText = game.playerTotal;
   document.getElementById("result").innerText = "";
 }
 
