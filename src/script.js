@@ -16,7 +16,7 @@ function handleBet() {
 
     document.getElementById(
       "bet-result-text"
-    ).innerHTML = `<p>Bet: ${game.bet}</p>`;
+    ).innerHTML = `<p>BET: ${game.bet}</p>`;
     updatePlayerHand();
   }
 }
