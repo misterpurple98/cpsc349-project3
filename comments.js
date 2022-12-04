@@ -12,9 +12,34 @@ class GameState {
 
   //Constructor that simply runs method to generate the deck
   constructor(bet = 1) {
-    this.bet = bet;
-    this.makeDeck();
+    if (localStorage.getItem('wDeck')) {
+      this.gameDeck = JSON.parse(localStorage.wDeck)
+      this.player = JSON.parse(localStorage.wPlayer)
+      this.playerTotal = localStorage.wPlayerTotal
+      this.dealer = JSON.parse(localStorage.wDealer)
+      this.dealerTotal = localStorage.wDealerTotal
+      this.bet = localStorage.wBet
+    } else {
+      this.makeDeck();
+      this.shuffleDeck();
+      this.bet = bet
+
+      for (let i = 0; i < 2; i++) {
+        this.hitDealer();
+        this.hitPlayer();
+      }
+      this.updateCache();
+    }
   }
+
+  updateCache () {
+    localStorage.wDeck = JSON.stringify(this.gameDeck)
+    localStorage.wPlayer = JSON.stringify(this.player)
+    localStorage.wPlayerTotal = this.playerTotal
+    localStorage.wDealer = JSON.stringify(this.dealer)
+    localStorage.wDealerTotal = this.dealerTotal
+    localStorage.wBet = this.bet
+  };
 
   //This will check for a win, and (possibly) update HTML
 
@@ -24,10 +49,12 @@ class GameState {
       message = "You Lost!";
     } else if (this.dealerTotal > 21) {
       message = "You Win!";
+      this.bet = this.bet * 2
     } else if (this.playerTotal == this.dealerTotal) {
       message = "Tie!";
     } else if (this.playerTotal > this.dealerTotal) {
       message = "You Win!";
+      this.bet = this.bet * 2
     } else if (this.playerTotal < this.dealerTotal) {
       message = "You Lost!";
     }
@@ -43,6 +70,7 @@ class GameState {
     this.playerTotal = 0;
     this.dealerTotal = 0;
     this.makeDeck();
+    this.updateCache()
     //this.update();
   }
 
@@ -82,6 +110,8 @@ class GameState {
   hitPlayer() {
     this.player.push(this.gameDeck.pop());
     this.playerTotal = this.updateCount(this.player);
+    document.getElementById("player-total").innerText = this.playerTotal;
+    this.updateCache()
     //this.update()
   }
 
@@ -89,6 +119,8 @@ class GameState {
   hitDealer() {
     this.dealer.push(this.gameDeck.pop());
     this.dealerTotal = this.updateCount(this.dealer);
+    document.getElementById("player-total").innerText = this.playerTotal;
+    this.updateCache()
     //this.update()
   }
 
@@ -124,29 +156,3 @@ class GameState {
 
 game = new GameState();
 
-//This block simulates adding cards to the player/dealer
-//Note that logging an array then changing the array will modify the logged array as well
-//This is because the console log holds a reference to the array
-game.shuffleDeck();
-console.log(game.deck);
-game.hitPlayer();
-game.hitPlayer();
-game.hitPlayer();
-game.hitPlayer();
-game.hitDealer();
-game.hitDealer();
-console.log(game.player);
-console.log(game.playerTotal);
-console.log(game.dealer);
-console.log(game.dealerTotal);
-console.log(game.deck);
-
-console.log("------------");
-
-//This clears the game state and outputs affected variables
-game.clearState();
-console.log(game.deck);
-console.log(game.player);
-console.log(game.playerTotal);
-console.log(game.dealer);
-console.log(game.dealerTotal);
