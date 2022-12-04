@@ -37,6 +37,8 @@ function handleStay () {
 function handlePlayAgain () {
   game.clearState()
   game.shuffleDeck()
+  game.hitDealer()
+  game.hitDealer()
   swapGameToMainMenu()
 }
 

@@ -521,6 +521,14 @@ video {
   margin: 0.25rem;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
 body {
   background: rgb(18, 43, 74);
   background: linear-gradient(
