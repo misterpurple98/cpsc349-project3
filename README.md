@@ -6,7 +6,7 @@ Group 3's submission for CPSC 349, Project 3
 
 - Names: Oliver Escalante, Julia Gonzalez Molina, Spencer Price, Karnikaa Velumani
 
-- Emails: oliverescalante@csu.fullerton.edu, Julia_placeHolder@csu.fullerton.edu, spencerprice@csu.fullerton.edu, karnikaavelumani@csu.fullerton.edu
+- Emails: oliverescalante@csu.fullerton.edu, julia.gon20@csu.fullerton.edu, spencerprice@csu.fullerton.edu, karnikaavelumani@csu.fullerton.edu
 
 # Instructions
 
