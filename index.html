@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
+    <link rel="stylesheet" href="dist/output.css" />
+
+    <script src="src/script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Blackjack</h1>
+      <p>TODO: How to play.</p>
+    </header>
+
+    <main>
+      <section id="start-menu">
+        <h2>Start Menu</h2>
+        <button onclick="handleStartGame()">Start Game</button>
+      </section>
+
+      <section id="bj-table" class="invisible">
+        <section id="bet-form">
+          <button onclick="handleBet()">Bet</button>
+          <input type="number" id="bet-input" min="1" step="1" />
+        </section>
+
+        <section id="game-container" class="invisible">
+          <p id="bet-result-text"></p>
+
+          <button onclick="handleHit()">Hit</button>
+          <button onclick="handleStay()">Stay</button>
+
+          <hr />
+
+          <div id="player-hand"></div>
+
+          <div id="dealer-total"></div>
+          <div id="player-total"></div>
+          <div id="result"></div>
+
+          <button onclick="handlePlayAgain()">Play Again</button>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="comments.js"></script>
+  </body>
+</html>

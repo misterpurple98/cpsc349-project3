@@ -513,10 +513,19 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.underline {
-  text-decoration-line: underline;
+.invisible {
+  visibility: hidden;
 }
 
-h2, p::first-letter {
-  text-transform: capitalize;
+body {
+  background: rgb(18, 43, 74);
+  background: linear-gradient(
+    90deg,
+    rgb(5, 224, 67) 0%,
+    rgba(215, 215, 215, 0.997) 100%
+  );
+}
+
+.invisible {
+  display: none;
 }
