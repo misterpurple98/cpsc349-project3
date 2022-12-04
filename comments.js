@@ -3,7 +3,7 @@ class GameState {
   gameDeck = new Array();
   suits = ["spades", "hearts", "diamonds", "clubs"];
   types = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-  
+
   //Field declarations for player/dealer hands and totals
   player = new Array();
   playerTotal = 0;
@@ -11,27 +11,24 @@ class GameState {
   dealerTotal = 0;
 
   //Constructor that simply runs method to generate the deck
-  constructor() {
+  constructor(bet = 1) {
+    this.bet = bet;
     this.makeDeck();
-  };
+  }
 
   //This will check for a win, and (possibly) update HTML
 
   Stay() {
     let message = "";
-    if(this.playerTotal > 21){
+    if (this.playerTotal > 21) {
       message = "You Lost!";
-    }
-    else if (this.dealerTotal > 21){
+    } else if (this.dealerTotal > 21) {
       message = "You Win!";
-    }
-    else if (this.playerTotal == this.dealerTotal){
+    } else if (this.playerTotal == this.dealerTotal) {
       message = "Tie!";
-    }
-    else if (this.playerTotal > this.dealerTotal){
+    } else if (this.playerTotal > this.dealerTotal) {
       message = "You Win!";
-    }
-    else if (this.playerTotal < this.dealerTotal){
+    } else if (this.playerTotal < this.dealerTotal) {
       message = "You Lost!";
     }
     document.getElementById("dealer-total").innerText = this.dealerTotal;
@@ -47,8 +44,8 @@ class GameState {
     this.dealerTotal = 0;
     this.makeDeck();
     //this.update();
-  };
-  
+  }
+
   //Reads a given card array
   //Returns the card total according to Blackjack Rules
   updateCount(cardArray) {
@@ -79,21 +76,21 @@ class GameState {
       totalAces--;
     }
     return workingCount;
-  };
+  }
 
   //Pop the top card off the deck and push it into the players hand
   hitPlayer() {
     this.player.push(this.gameDeck.pop());
     this.playerTotal = this.updateCount(this.player);
     //this.update()
-  };
+  }
 
   //Pop the top card off the deck and push it into the dealers hand
   hitDealer() {
     this.dealer.push(this.gameDeck.pop());
     this.dealerTotal = this.updateCount(this.dealer);
     //this.update()
-  };
+  }
 
   //Creates cards by assigning their suit/type
   //Pushes the created card into the deck
@@ -105,27 +102,27 @@ class GameState {
         this.gameDeck.push(card);
       }
     }
-  };
+  }
 
   //Fisher-Yates shuffle implementation
   shuffleDeck() {
     for (let i = this.gameDeck.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * i);
       if (j != i) {
-       let tmp = this.gameDeck[i];
-       this.gameDeck[i] = this.gameDeck[j];
-       this.gameDeck[j] = tmp;
+        let tmp = this.gameDeck[i];
+        this.gameDeck[i] = this.gameDeck[j];
+        this.gameDeck[j] = tmp;
       }
     }
-  };
+  }
 
   //Returns the game deck for testing purposes
   get deck() {
     return this.gameDeck;
-  };
-};
+  }
+}
 
-let game = new GameState();
+game = new GameState();
 
 //This block simulates adding cards to the player/dealer
 //Note that logging an array then changing the array will modify the logged array as well
