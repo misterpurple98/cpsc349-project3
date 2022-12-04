@@ -517,6 +517,10 @@ video {
   visibility: hidden;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 body {
   background: rgb(18, 43, 74);
   background: linear-gradient(
